@@ -1,0 +1,37 @@
+{
+	"name": "mlt",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/trread/mlt"
+	},
+	"bugs": {
+		"url": "http://github.com/trread/mlt/issues"
+	},
+	"main": "./lib/mlt.js",
+	"description": "A node module for constructing XML documents for Media Lovin' Toolkit (MLT).",
+	"version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:trread/mlt.git"
+	},
+	 "engines": {
+		"node": "0.4 || 0.6",
+		"npm": "1"
+	},
+	"dependencies": {
+		"xmlbuilder": "0.3.x",
+		"underscore": "1.3.x",
+		"node-uuid": "1.3.x"
+	},
+	"devDependencies": {
+		"gm": "0.5.x",
+		"step": "0.0.x",
+		"request": "2.9.x"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/mit-license.html"
+		}
+	]
+}

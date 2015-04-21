@@ -14,7 +14,7 @@
   },
   "main": "./lib/mlt.js",
   "description": "A node module for constructing XML documents for Media Lovin' Toolkit (MLT).",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "engines": {
     "node": "0.4 || 0.6",
     "npm": "1"

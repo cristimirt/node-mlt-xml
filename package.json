@@ -1,37 +1,46 @@
 {
-	"name": "mlt",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/trread/mlt"
-	},
-	"bugs": {
-		"url": "http://github.com/trread/mlt/issues"
-	},
-	"main": "./lib/mlt.js",
-	"description": "A node module for constructing XML documents for Media Lovin' Toolkit (MLT).",
-	"version": "1.0.0",
-	"repository": {
-		"type": "git",
-		"url": "git@github.com:trread/mlt.git"
-	},
-	 "engines": {
-		"node": "0.4 || 0.6",
-		"npm": "1"
-	},
-	"dependencies": {
-		"xmlbuilder": "0.3.x",
-		"underscore": "1.3.x",
-		"node-uuid": "1.3.x"
-	},
-	"devDependencies": {
-		"gm": "0.5.x",
-		"step": "0.0.x",
-		"request": "2.9.x"
-	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "http://www.opensource.org/licenses/mit-license.html"
-		}
-	]
+  "author": {
+    "name": "David Jones",
+    "email": "david@trread.com",
+    "url": "http://trread.com"
+  },
+  "name": "mlt",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:trread/mlt.git"
+  },
+  "bugs": {
+    "url": "http://github.com/trread/mlt/issues"
+  },
+  "main": "./lib/mlt.js",
+  "description": "A node module for constructing XML documents for Media Lovin' Toolkit (MLT).",
+  "version": "1.0.0",
+  "engines": {
+    "node": "0.4 || 0.6",
+    "npm": "1"
+  },
+  "dependencies": {
+    "xmlbuilder": "0.3.x",
+    "underscore": "1.3.x",
+    "node-uuid": "1.3.x"
+  },
+  "devDependencies": {
+    "gm": "0.5.x",
+    "step": "0.0.x",
+    "request": "2.9.x"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.html"
+    }
+  ],
+  "readme": "# MLT Module for Node.js\n\nThis module will generate the XML instructions needed to create a video using [Media Lovin' Toolkit](http://www.mltframework.org/), including audio overlays, transitions, picture slides, and watermarks. This module was forked from [node-mlt](https://github.com/redmantech/node-mlt) by Jeffrey Van Alstine.\n\n## Installation\n\n```js\nnpm install mlt\n```\n\n## API\n\n### Create an MLT XML Object\n```js\nvar MLT = require('node-mlt');\n\nvar mlt = new MLT\nconsole.log(mlt.toString());\n//<?xml version=\"1.0\" encoding=\"utf-8\"?><mlt/>\nconsole.log(mlt.toString({pretty: true}));\n// <?xml version=\"1.0\" encoding=\"utf-8\"?>\n//\n//<mlt/>\n//\n```\n\n### Add producers to your MLT document\n```js\nmusic = new MLT.Producer.Audio({source: '/home/jeffrey/Downloads/crazy.mp3'});\nmlt.push(music);\n\nimage = new MLT.Producer.Image({source: '/home/jeffrey/Desktop/dachshund.jpg'});\nmlt.push(image);\n```\n\n### Create affine filter\n```js\nvar affine = new MLT.Filter.Affine\naffine.geometry([\n\t{\n\t\tframe: 0,\n\t\tx: 0,\n\t\ty: 0,\n\t\tw: 1,\n\t\th: 1,\n\t\tsat: 100\n\t},\n\t{\n\t\tframe: 999,\n\t\tx: 480,\n\t\ty: 640,\n\t\tw: 480,\n\t\th: 640,\n\t\tsat: 100\n\t} \n]);\n```\n\n### Create a watermark filter\n```js\nvar watermark = new MLT.Filter.Watermark({resource: '/home/jeffrey/Desktop/signature.jpg'});\n```\n\n### Create an audio-gain filter\n```js\nvar fadeIn = new MLT.Filter.AudioFade({\n\tstart: 0,\n\tlength: 100,\n\tstartVol: 0,\n\tendVol: 1\n});\n```\n\n### Create a Frei0r blur filter\n```js\nvar frei0r = new MLT.Filter.Frei0r\nfrei0r.squareblur([\n\t{\n\t\tframe: 0,\n\t\tsize: 0.05\n\t},\n\t{\n\t\tframe: 22,\n\t\tsize: 0\n\t}\n]);\n\n```\n\n### Add producers to a playlist with filters\n```js\nvar playlist = new MLT.Playlist;\n\nplaylist.entry({producer: music, filters: [fadeIn], length: 1000); // Length is in frames\nmlt.push(playlist);\n```\n\n### Add a playlist to a track\n```js\nvar track = new MLT.Multitrack.Track(playlist);\n```\n\n### Add a track to a multitrack\n```js\nvar multitrack = new MLT.Multitrack;\nmultitrack.addTrack(track);\n```\n\n### Add a multitrack to a tractor\n```js\nvar tractor = new MLT.Tractor;\ntractor.push(multitrack);\nmlt.push(tractor);\n```",
+  "readmeFilename": "README.md",
+  "gitHead": "32c59cfe52e504490b4f1581d2b1a8a53098ccd7",
+  "homepage": "https://github.com/trread/mlt",
+  "_id": "mlt@1.0.0",
+  "scripts": {},
+  "_shasum": "e2be0aca5f0d0da96e7765e26ef15c6838c4770d",
+  "_from": "mlt@^1.0.0"
 }
